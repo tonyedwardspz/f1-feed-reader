@@ -1,0 +1,59 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../elements.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html"> 
+<link rel="import" href="../../bower_components/byutv-jsonp/byutv-jsonp.html">
+
+<dom-module id="feed-list">
+
+  <iron-ajax
+    auto
+    url="http://rss.feedsportal.com/c/350/f/537798/index.rss"
+    params=''
+    handle-as="text"
+    contentType="text/xml"
+    on-response="handleResponse"
+    debounce-duration="300"></iron-ajax>
+
+
+
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <template id="news-list" is="dom-repeat" items="{{newsItems}}">
+      <feed-item title="{{item.title}}" snippet="{{item.snippet}}" rid="{{item.rid}}"></feed-item>
+    </template>
+
+  </template>
+  <script>
+    Polymer({
+      is: "feed-list",
+      properties: {
+        newsItems: {
+          type: Array,
+          value: [{title:"Title 1", snippet: "Story Snippet", rid: 0}, {title:"Title 2", snippet: "Story Snippet 2", rid: 1}]
+        }
+      },
+      ready: function(e){
+        console.log("Feed list ready")
+      },
+      handleResponse: function(request) {
+        console.log("RESPONSE")
+        console.log(request.detail.response)
+      }
+    });
+  </script>
+</dom-module>
