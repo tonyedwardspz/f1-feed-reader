@@ -14,46 +14,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/byutv-jsonp/byutv-jsonp.html">
 
 <dom-module id="feed-list">
-
-  <iron-ajax
-    auto
-    url="http://rss.feedsportal.com/c/350/f/537798/index.rss"
-    params=''
-    handle-as="text"
-    contentType="text/xml"
-    on-response="handleResponse"
-    debounce-duration="300"></iron-ajax>
-
-
-
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+      <iron-ajax
+    auto
+    url="http://open-elements.org/rss.xml"
+    handle-as="xml" last-response="{{data}}"></iron-ajax>
 
-    <template id="news-list" is="dom-repeat" items="{{newsItems}}">
-      <feed-item title="{{item.title}}" snippet="{{item.snippet}}" rid="{{item.rid}}"></feed-item>
+    <template is="dom-repeat" items="{{dataList}}">
+      <h1>{{item.title.#text}}</h1>
+      <span>{{item.description.#text}}</span>
     </template>
 
   </template>
+
+</dom-module>
   <script>
+    var gdata
+    function xmlToJson(xml) {
+  
+  // Create the return object
+  var obj = {};
+
+  if (xml.nodeType == 1) { // element
+    // do attributes
+    if (xml.attributes.length > 0) {
+    obj["@attributes"] = {};
+      for (var j = 0; j < xml.attributes.length; j++) {
+        var attribute = xml.attributes.item(j);
+        obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+      }
+    }
+  } else if (xml.nodeType == 3) { // text
+    obj = xml.nodeValue;
+  }
+
+  // do children
+  if (xml.hasChildNodes()) {
+    for(var i = 0; i < xml.childNodes.length; i++) {
+      var item = xml.childNodes.item(i);
+      var nodeName = item.nodeName;
+      if (typeof(obj[nodeName]) == "undefined") {
+        obj[nodeName] = xmlToJson(item);
+      } else {
+        if (typeof(obj[nodeName].push) == "undefined") {
+          var old = obj[nodeName];
+          obj[nodeName] = [];
+          obj[nodeName].push(old);
+        }
+        obj[nodeName].push(xmlToJson(item));
+      }
+    }
+  }
+  return obj;
+};
     Polymer({
       is: "feed-list",
-      properties: {
-        newsItems: {
-          type: Array,
-          value: [{title:"Title 1", snippet: "Story Snippet", rid: 0}, {title:"Title 2", snippet: "Story Snippet 2", rid: 1}]
-        }
+       properties: {
+         data: {
+         },
+         dataList: {
+           computed:"datalog(data)"
+         }
       },
-      ready: function(e){
-        console.log("Feed list ready")
-      },
-      handleResponse: function(request) {
-        console.log("RESPONSE")
-        console.log(request.detail.response)
+      datalog (data) {
+        newdata = xmlToJson(data);
+        console.log(newdata.rss.channel.item);
+        gdata = newdata;
+        return newdata.rss.channel.item;
       }
     });
   </script>
-</dom-module>
+
+
