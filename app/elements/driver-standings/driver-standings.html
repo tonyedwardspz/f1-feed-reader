@@ -15,34 +15,67 @@
       :host {
         display: block;
       }
+      paper-material {
+        border-radius: 2px;
+        height: 100%;
+        padding: 16px 0 16px 0;
+        width: calc(98.66% - 16px);
+        margin: 16px auto;
+        background: white;
+      }
+
+      @media (max-width: 600px) {
+
+        paper-material {
+          --menu-container-display: none;
+          width: calc(97.33% - 32px);
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+
+      @media (min-width: 601px) {
+
+        paper-material {
+          width: calc(98% - 46px);
+          margin-bottom: 32px;
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+      }
     </style>
+
     <template is="dom-repeat" items="{{driverList}}">
-    <div>{{item.Driver.givenName}}</div>
+      <paper-material>
+        <div>{{item.Driver.givenName}}</div>
+      </paper-material>
     </template>
   </template>
-  <script>
-  (function() {
-    'use strict';
 
-    Polymer({
-      is: 'driver-standings',
-      properties: {
-        foo: {
-          type: String,
-          value: 'driver-standings',
-          notify: true
-        },
-        data: {
-        },
-        driverList: {
-          computed: "processDrivers(data)"
-        }
-      },
-      processDrivers: function (data){
-        console.log(data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
-        return data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-      }
-    });
-  })();
-  </script>
+
 </dom-module>
+
+<script>
+(function() {
+  'use strict';
+
+  Polymer({
+    is: 'driver-standings',
+    properties: {
+      foo: {
+        type: String,
+        value: 'driver-standings',
+        notify: true
+      },
+      data: {
+      },
+      driverList: {
+        computed: "processDrivers(data)"
+      }
+    },
+    processDrivers: function (data){
+      return data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+    }
+  });
+})();
+</script>
