@@ -2,6 +2,7 @@
 <link rel="import" href="../elements.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
 
 <dom-module id="feed-list">
 <link rel="import" href="../../styles/app-theme.html">
@@ -46,10 +47,13 @@
       last-response="{{data}}"></iron-ajax>
 
     <template is="dom-repeat" items="{{dataList}}">
+      
       <paper-material elevation="1" class="paper-font-body2">
+        <paper-ripple></paper-ripple>
         <h1>{{item.title.#text}}</h1>
         <p>{{item.description.#text}}</p>
       </paper-material>
+      
     </template>
 
   </template>
