@@ -1,22 +1,12 @@
 <!doctype html>
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<html lang="">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Polymer Starter Kit" />
-  <title>Polymer Starter Kit</title>
+  <title>F1 Feed Reader</title>
   <!-- Place favicon.ico in the `app/` directory -->
 
   <!-- Chrome for Android theme color -->
@@ -72,17 +62,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
           <a data-route="home" href="/">
             <iron-icon icon="home"></iron-icon>
-            <span>Home</span>
+            <span>News Feed</span>
           </a>
 
-          <a data-route="users" href="/users">
+          <a data-route="driver-standings" href="/diver-standings">
             <iron-icon icon="info"></iron-icon>
-            <span>Users</span>
+            <span>Driver Standings</span>
           </a>
 
-          <a data-route="contact" href="/contact">
+          <a data-route="constructor-standings" href="/constructor-standings">
             <iron-icon icon="mail"></iron-icon>
-            <span>Contact</span>
+            <span>Constructor Standings</span>
+          </a>
+
+          <a data-route="next-race" href="/next-race">
+            <iron-icon icon="mail"></iron-icon>
+            <span>Next Race</span>
           </a>
         </paper-menu>
       </paper-scroll-header-panel>
@@ -95,18 +90,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
           <span class="flex"></span>
 
-          <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
-
           <!-- Application name -->
           <div class="middle middle-container center horizontal layout">
-            <div class="app-name">Polymer Starter Kit</div>
+            <div class="app-name">F1 Feed Reader</div>
           </div>
 
           <!-- Application sub title -->
           <div class="bottom bottom-container center horizontal layout">
-            <div class="bottom-title paper-font-subhead">The future of the web today</div>
+            <div class="bottom-title paper-font-subhead">Formula 1 news worth reading</div>
           </div>
 
         </paper-toolbar>
@@ -117,51 +108,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <section data-route="home">
               
-              <p>Home snaity check</p>
-              <feed-list>This is the feed list</feed-list>
-
               <paper-material elevation="1" class="paper-font-body2">
-                <h1 id="license">License</h1>
-                <p>Everything in this repo is BSD style license unless otherwise specified.</p>
-                <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
-                <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
-                <ul>
-                <li>Redistributions of source code must retain the above copyright
-                notice, this list of conditions and the following disclaimer.</li>
-                <li>Redistributions in binary form must reproduce the above
-                copyright notice, this list of conditions and the following disclaimer
-                in the documentation and/or other materials provided with the
-                distribution.</li>
-                <li>Neither the name of Google Inc. nor the names of its
-                contributors may be used to endorse or promote products derived from
-                this software without specific prior written permission.</li>
-                </ul>
-                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+                <h1>Styles check</h1>
+                <p>This is a dummy item</p>
               </paper-material>
+              <feed-list></feed-list>
 
             </section>
 
-            <section data-route="users">
+            <section data-route="driver-standings">
               <paper-material elevation="1">
-                <h2 class="paper-font-display2">Users</h2>
-                <p>This is the users section</p>
-                <a href="/users/Rob">Rob</a>
+                <h2 class="paper-font-display2">Driver Standings</h2>
+                <p>This is the driver standings section</p>
               </paper-material>
             </section>
 
-            <section data-route="user-info">
+            <section data-route="constructor-standings">
               <paper-material elevation="1">
-                <h2 class="paper-font-display2">
-                User:<span>{{params.name}}</span>
-                </h2>
-                <div>This is <span>{{params.name}}</span>'s section</div>
+                <h2 class="paper-font-display2">Constructor Standings</h2>
+                <div>This is the constructor standings section</div>
               </paper-material>
             </section>
 
-            <section data-route="contact">
+            <section data-route="next-race">
               <paper-material elevation="1">
-                <h2 class="paper-font-display2">Contact</h2>
-                <p>This is the contact section</p>
+                <h2 class="paper-font-display2">Next Race</h2>
+                <p>This is the next race section</p>
               </paper-material>
             </section>
 

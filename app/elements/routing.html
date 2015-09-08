@@ -19,8 +19,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.route = 'home';
     });
 
-    page('/users', function () {
-      app.route = 'users';
+    page('/diver-standings', function () {
+      app.route = 'driver-standings';
     });
 
     page('/users/:name', function (data) {
@@ -28,8 +28,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.params = data.params;
     });
 
-    page('/contact', function () {
-      app.route = 'contact';
+    page('/constructor-standings', function () {
+      app.route = 'constructor-standings';
+    });
+
+    page('/next-race', function () {
+      app.route = 'next-race';
     });
 
     // add #! before urls
