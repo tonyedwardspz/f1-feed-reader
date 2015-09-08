@@ -8,7 +8,7 @@ Pull requests welcome.
 
 The starting point is the default Yeaoman starter kit application.
 
-## Getting Started
+## Get the project
 
 To play around with the project localy you need to:
 
