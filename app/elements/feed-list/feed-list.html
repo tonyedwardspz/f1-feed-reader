@@ -97,12 +97,11 @@
   };
   Polymer({
     is: "feed-list",
-     properties: {
-       data: {
-       },
-       dataList: {
-         computed:"datalog(data)"
-       }
+    properties: {
+      data: {},
+      dataList: {
+        computed:"datalog(data)"
+      }
     },
     datalog (data) {
       newdata = xmlToJson(data);
