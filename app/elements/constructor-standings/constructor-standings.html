@@ -70,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 (function() {
   'use strict';
 
-  Polymer({
+  new Polymer({
     is: 'constructor-standings',
 
     properties: {
@@ -82,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       data: {
       },
       constructorList: {
-        computed: "processConstructors(data)"
+        computed: 'processConstructors(data)'
       }
     },
     processConstructors: function (data){

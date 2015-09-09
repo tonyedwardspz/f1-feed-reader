@@ -62,7 +62,7 @@
 (function() {
   'use strict';
 
-  Polymer({
+  new Polymer({
     is: 'driver-standings',
     properties: {
       foo: {
@@ -73,7 +73,7 @@
       data: {
       },
       driverList: {
-        computed: "processDrivers(data)"
+        computed: 'processDrivers(data)'
       }
     },
     processDrivers: function (data){

@@ -64,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   (function() {
     'use strict';
 
-    Polymer({
+    new Polymer({
       is: 'next-race',
 
       properties: {
@@ -75,13 +75,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         data: {},
         raceList: {
-          computed: "processRaceData(data)"
+          computed: 'processRaceData(data)'
         }
       },
       processRaceData: function(data) {
-        var raceList = data.MRData.RaceTable.Races
-        console.log(raceList)
-        return raceList
+        var raceList = data.MRData.RaceTable.Races;
+        console.log(raceList);
+        return raceList;
       }
     });
   })();
