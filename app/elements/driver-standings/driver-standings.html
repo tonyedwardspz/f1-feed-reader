@@ -47,7 +47,9 @@
 
     <template is="dom-repeat" items="{{driverList}}">
       <paper-material>
-        <div>{{item.Driver.givenName}}</div>
+        <span>{{item.position}}</span>
+        <span>{{item.Driver.givenName}}</span> <span>{{item.Driver.familyName}}</span>
+        <span>{{item.points}}</span>
       </paper-material>
     </template>
   </template>
