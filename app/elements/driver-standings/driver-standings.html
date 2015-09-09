@@ -6,11 +6,6 @@
 
 <dom-module id="driver-standings">
   <template>
-    <iron-ajax
-    auto
-    url="http://ergast.com/api/f1/current/driverStandings.json"
-    handle-as="json" 
-    last-response="{{data}}"></iron-ajax>
     <style>
       :host {
         display: block;
@@ -44,6 +39,12 @@
         }
       }
     </style>
+
+    <iron-ajax
+    auto
+    url="http://ergast.com/api/f1/current/driverStandings.json"
+    handle-as="json" 
+    last-response="{{data}}"></iron-ajax>
 
     <template is="dom-repeat" items="{{driverList}}">
       <paper-material>

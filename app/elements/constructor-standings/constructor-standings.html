@@ -12,29 +12,82 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="constructor-standings">
+
   <template>
     <style>
       :host {
         display: block;
       }
-    </style>
-    <div>Hello from <span>{{foo}}</span></div>
-  </template>
-  <script>
-  (function() {
-    'use strict';
+      paper-material {
+        border-radius: 2px;
+        height: 100%;
+        padding: 16px 0 16px 0;
+        width: calc(98.66% - 16px);
+        margin: 16px auto;
+        background: white;
+      }
 
-    Polymer({
-      is: 'constructor-standings',
+      @media (max-width: 600px) {
 
-      properties: {
-        foo: {
-          type: String,
-          value: 'constructor-standings',
-          notify: true
+        paper-material {
+          --menu-container-display: none;
+          width: calc(97.33% - 32px);
+          padding-left: 16px;
+          padding-right: 16px;
         }
       }
-    });
-  })();
-  </script>
+
+      @media (min-width: 601px) {
+
+        paper-material {
+          width: calc(98% - 46px);
+          margin-bottom: 16px;
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+      }
+    </style>
+
+    <iron-ajax
+    auto
+    url="http://ergast.com/api/f1/current/ConstructorStandings.json"
+    handle-as="json" 
+    last-response="{{data}}"></iron-ajax>
+
+    <template is="dom-repeat" items="{{constructorList}}">
+      <paper-material>
+        <span>{{item.position}}</span>
+        <span>{{item.Constructor.name}}</span>
+        <span>{{item.points}}</span>
+      </paper-material>
+    </template>
+
+  </template>
+
 </dom-module>
+
+<script>
+(function() {
+  'use strict';
+
+  Polymer({
+    is: 'constructor-standings',
+
+    properties: {
+      foo: {
+        type: String,
+        value: 'constructor-standings',
+        notify: true
+      },
+      data: {
+      },
+      constructorList: {
+        computed: "processConstructors(data)"
+      }
+    },
+    processConstructors: function (data){
+      return data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+    }
+  });
+})();
+</script>
