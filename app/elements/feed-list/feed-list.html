@@ -69,8 +69,7 @@
       }
     },
     datalog (data) {
-      var newdata = xmlToJson(data);
-      return newdata.rss.channel.item;
+      return data.items;
     }
   });
 </script>
