@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 
 <dom-module id="feed-list">
 
@@ -36,6 +37,18 @@
         padding-right: 30px;
       }
     }
+
+    .content {
+      display: inline-block;
+      max-width: 80%;
+    }
+
+    paper-fab {
+      float: right;
+      margin-top:24px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 
   <template>
@@ -48,10 +61,14 @@
     <template is="dom-repeat" items="{{dataList}}">
       
       <paper-material elevation="1" class="paper-font-body2">
-        <paper-ripple></paper-ripple>
         <h1>{{item.title}}</h1>
-        <p>{{item.description}}</p>
-        <p>Source: <span>{{item.source}}<br /></span> Date: <span>{{formatDate(item.pubDate)}}</span></p>
+        <div class="content">
+          <p>{{item.description}}</p>
+          <p>Source: <a href="{{item.link}}"><span>{{item.source}}</span></a><br /> Date: <span>{{formatDate(item.pubDate)}}</span></p>
+        </div>
+        <a href="{{item.link}}">
+          <paper-fab icon="arrow-forward"></paper-fab>
+        </a>
       </paper-material>
       
     </template>
