@@ -49,8 +49,11 @@
     last-response="{{data}}"></iron-ajax>
 
     <google-map latitude="{{nextRaceLocation.lat}}" longitude="{{nextRaceLocation.long}}" zoom="13">
-      <google-map-marker latitude="37.779" longitude="-122.3892"
-      draggable="false" title="{{nextRaceLocation.locality}}"></google-map-marker>
+
+      <google-map-marker latitude="37.779" longitude="-122.3892" draggable="false" 
+                         title="{{nextRaceLocation.locality}}">
+      </google-map-marker>
+
     </google-map>
 
     <template is="dom-repeat" items="{{raceList}}">
@@ -58,9 +61,6 @@
         <span>{{item.raceName}}</span>
       </paper-material>
     </template>
-    <span>{{nextRace}}</span>
-    <span>{{nextRaceLocation}}</span>
-
 
   </template>
   <script>
@@ -96,7 +96,6 @@
         }
       },
       getNextRaceLocation: function(race){
-        console.log("Location: " + race.Circuit.Location.long)
         return race.Circuit.Location;
       }
     });
