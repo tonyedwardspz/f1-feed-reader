@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "byutv-jsonp": "~1.2.0",
+    "google-map": "GoogleWebComponents/google-map#~1.1.0",
     "iron-ajax": "PolymerElements/iron-ajax#~1.0.4",
     "iron-elements": "PolymerElements/iron-elements#1.0.0",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
