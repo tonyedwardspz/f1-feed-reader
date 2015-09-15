@@ -41,7 +41,7 @@
   <template>
     <iron-ajax
       auto
-      url="http://f1-feed-reader.herokuapp.com/v1/news_items.json"
+      url="http://localhost:3000/v1/news_items.json"
       handle-as="json" 
       last-response="{{data}}"></iron-ajax>
 
@@ -49,8 +49,9 @@
       
       <paper-material elevation="1" class="paper-font-body2">
         <paper-ripple></paper-ripple>
-        <h1>{{item.title.#text}}</h1>
-        <p>{{item.description.#text}}</p>
+        <h1>{{item.title}}</h1>
+        <p>{{item.description}}</p>
+        <p>Source: <span>{{item.source}}<br /></span> Date: <span>{{formatDate(item.pubDate)}}</span></p>
       </paper-material>
       
     </template>
@@ -63,13 +64,31 @@
   Polymer({
     is: 'feed-list',
     properties: {
-      data: {},
+      data: {
+        type: Array
+      },
       dataList: {
         computed:'datalog(data)'
       }
     },
-    datalog (data) {
+    datalog: function(data) {
+      console.log(data.items)
       return data.items;
+    },
+    formatDate: function(d){
+      var date = new Date(d);
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var formatted = date.getHours() + ':' + ("0" + 
+                      date.getMinutes()).slice(-2) + ' - ' + 
+                      addOrd(date.getDate()) + ' ' + 
+                      months[date.getMonth()] + ' ' + 
+                      date.getFullYear();
+      return formatted;
     }
   });
+  function addOrd(n) {
+    var ords = [,'st','nd','rd'];
+    var ord, m = n%100;
+    return n + ((m > 10 && m < 14)? 'th' : ords[m%10] || 'th');
+  };
 </script>
