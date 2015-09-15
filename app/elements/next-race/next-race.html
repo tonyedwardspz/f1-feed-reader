@@ -48,13 +48,19 @@
     handle-as="json" 
     last-response="{{data}}"></iron-ajax>
 
-    <google-map latitude="37.77493" longitude="-122.41942"></google-map>
+    <google-map latitude="{{nextRaceLocation.lat}}" longitude="{{nextRaceLocation.long}}" zoom="13">
+      <google-map-marker latitude="37.779" longitude="-122.3892"
+      draggable="false" title="{{nextRaceLocation.locality}}"></google-map-marker>
+    </google-map>
 
     <template is="dom-repeat" items="{{raceList}}">
       <paper-material>
         <span>{{item.raceName}}</span>
       </paper-material>
     </template>
+    <span>{{nextRace}}</span>
+    <span>{{nextRaceLocation}}</span>
+
 
   </template>
   <script>
@@ -68,10 +74,30 @@
         raceList: {
           computed: 'processRaceData(data)'
         },
+        nextRace: {
+          computed: 'getNextRace(data)'
+        },
+        nextRaceLocation: {
+          computed: 'getNextRaceLocation(nextRace)'
+        }
       },
       processRaceData: function(data) {
         var raceList = data.MRData.RaceTable.Races;
         return raceList;
+      },
+      getNextRace: function(data) {
+        var raceList = data.MRData.RaceTable.Races;
+
+        for (var i = 0; i < raceList.length; i++) {
+          var date = new Date(raceList[i].date);
+          if (date >= Date.now()){
+            return raceList[i];
+          }
+        }
+      },
+      getNextRaceLocation: function(race){
+        console.log("Location: " + race.Circuit.Location.long)
+        return race.Circuit.Location;
       }
     });
   })();
