@@ -32,7 +32,7 @@
 
       .content {
         position: relative;
-        padding: 16px;
+        padding: 16px 16px 0 16px;
       }
 
       .name, .speaker {
@@ -44,7 +44,7 @@
         color: #147BCC;
       }
 
-      .speaker {
+      .locality {
         margin-bottom: 16px;
         font-size: 20px;
         font-weight: 600;
@@ -52,22 +52,18 @@
         color: #4FB6F7;
       }
 
-      .time, .location {
+      .time {
         font-size: 18px;
         line-height: 28px;
         color: #555;
       }
 
       [collapsible-content] {
-        padding: 16px 16px 40px;
+        padding: 0 16px 32px;
       }
 
       .card[narrow] [collpsible-content] {
         padding: 16px 16px 24px;
-      }
-
-      .desc {
-        font-size: 16px;
       }
 
       .toggle-icon {
@@ -110,15 +106,14 @@
 
           <div class="content">
             <div class="name">{{item.raceName}}</div>
-            <div class="speaker">Speaker</div>
+            <div class="locality">{{item.Circuit.Location.locality}}</div>
             <iron-icon class="toggle-icon" icon="arrow-drop-down" collapsible-toggle>
             <iron-icon>
           </div>
 
           <div collapsible-content>
-            <div class="time">Time</div>
-            <div class="location">Location</div>
-            <div class="desc">This is the description</div>
+            <div class="time">{{getRaceDate(item)}}</div>
+            <div class="time">{{getRaceTime(item)}}</div>
           </div>
 
         </collapsible-card>
@@ -141,11 +136,22 @@
         narrowLayout: {
           type: Boolean,
           value: false
-        },
+        }
       },
       processRaceData: function(data) {
         var raceList = data.MRData.RaceTable.Races;
         return raceList;
+      },
+      getRaceDate: function(race) {
+        var date = new Date(race.date);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var formatted = addOrd(date.getDate()) + ' ' + 
+                        months[date.getMonth()] + ' ' + 
+                        date.getFullYear();
+        return formatted;
+      },
+      getRaceTime: function (race) {
+        return race.time.substring(0, race.time.length - 4) + " GMT";
       }
     });
   })();

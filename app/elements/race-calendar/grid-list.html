@@ -28,8 +28,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host > ::content > * {
       @apply(--layout-flex-none);
       box-sizing: border-box;
-      /*max-width: 300px;
-      min-width: 260px;*/
+      width: calc(33% - 20px);
+      margin: 10px;
       margin: 8px;
       box-sizing: border-box;
     }
@@ -37,11 +37,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     @media (max-width: 1299px) {
       :host {
         max-width: 948px;
-      }
-
-      :host > ::content > * {
-        width: calc(33% - 20px);
-        margin: 10px;
       }
     }
 
