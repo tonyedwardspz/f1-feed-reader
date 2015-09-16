@@ -1,5 +1,10 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-styles/shadow.html">
+<link rel="import" href="grid-list.html">
+<link rel="import" href="collapsible-card.html">
 
 <dom-module id="race-calendar">
   <template>
@@ -7,33 +12,86 @@
       :host {
         display: block;
       }
-      paper-material {
-        border-radius: 2px;
-        height: 100%;
-        padding: 16px 0 16px 0;
-        width: calc(98.66% - 16px);
-        margin: 16px auto;
-        background: white;
+
+      .card {
+        padding-top: 16px;
+        background-color: #fff;
+        min-height: 200px;
       }
 
-      @media (max-width: 600px) {
-
-        paper-material {
-          --menu-container-display: none;
-          width: calc(97.33% - 32px);
-          padding-left: 16px;
-          padding-right: 16px;
-        }
+      .card, .date-card {
+        -webkit-transform: translateZ(0);
+        will-change: transform;
       }
 
-      @media (min-width: 601px) {
+      .card[narrow] {
+        min-height: 0;
+        box-shadow: none;
+        border-bottom: 1px solid #ddd;
+      }
 
-        paper-material {
-          width: calc(98% - 46px);
-          margin-bottom: 16px;
-          padding-left: 30px;
-          padding-right: 30px;
-        }
+      .content {
+        position: relative;
+        padding: 16px;
+      }
+
+      .name, .speaker {
+        line-height: 30px;
+      }
+
+      .name {
+        font-weight: 600;
+        color: #147BCC;
+      }
+
+      .speaker {
+        margin-bottom: 16px;
+        font-size: 20px;
+        font-weight: 600;
+        font-style: italic;
+        color: #4FB6F7;
+      }
+
+      .time, .location {
+        font-size: 18px;
+        line-height: 28px;
+        color: #555;
+      }
+
+      [collapsible-content] {
+        padding: 16px 16px 40px;
+      }
+
+      .card[narrow] [collpsible-content] {
+        padding: 16px 16px 24px;
+      }
+
+      .desc {
+        font-size: 16px;
+      }
+
+      .toggle-icon {
+        position: absolute;
+        right: 8px;
+        bottom: 4px;
+        --iron-icon-width: 40px;
+        --iron-icon-height: 40px;
+        padding: 8px;
+        color: #4FB6F7;
+        cursor: pointer;
+      }
+
+      .card:not([narrow]) .toggle-icon {
+        display: none;
+      }
+
+      .card[opened] .toggle-icon {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+
+      template {
+        display: none;
       }
     </style>
 
@@ -42,12 +100,31 @@
     url="http://ergast.com/api/f1/2015.json"
     handle-as="json" 
     last-response="{{data}}"></iron-ajax>
+    <iron-media-query query="(max-width: 643px)" query-matches="{{narrowLayout}}"></iron-media-query>
 
-    <template is="dom-repeat" items="{{raceList}}">
-      <paper-material>
-        <span>{{item.raceName}}</span>
-      </paper-material>
-    </template>
+    <grid-list>
+
+      <template is="dom-repeat" items="{{raceList}}">
+
+        <collapsible-card class="card" cascaded opened="[[!narrowLayout]]" narrow$="{{narrowLayout}}">
+
+          <div class="content">
+            <div class="name">{{item.raceName}}</div>
+            <div class="speaker">Speaker</div>
+            <iron-icon class="toggle-icon" icon="arrow-drop-down" collapsible-toggle>
+            <iron-icon>
+          </div>
+
+          <div collapsible-content>
+            <div class="time">Time</div>
+            <div class="location">Location</div>
+            <div class="desc">This is the description</div>
+          </div>
+
+        </collapsible-card>
+      </template>
+
+    </grid-list>
 
   </template>
   <script>
@@ -60,7 +137,11 @@
         data: {},
         raceList: {
           computed: 'processRaceData(data)'
-        }
+        },
+        narrowLayout: {
+          type: Boolean,
+          value: false
+        },
       },
       processRaceData: function(data) {
         var raceList = data.MRData.RaceTable.Races;
