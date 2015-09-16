@@ -48,19 +48,23 @@
     handle-as="json" 
     last-response="{{data}}"></iron-ajax>
 
-    <google-map latitude="{{nextRaceLocation.lat}}" longitude="{{nextRaceLocation.long}}" zoom="13">
+    <paper-material>
+      <p>{{nextRace.raceName}}</p>
+      <p>{{nextRace.Circuit.circuitName}}</p>
+      <p>Date: <span>{{nextRaceDate}}</span></p>
+      <p>Time: <span>{{nextRaceTime}}</span></p>
+    </paper-material>
 
-      <google-map-marker latitude="37.779" longitude="-122.3892" draggable="false" 
-                         title="{{nextRaceLocation.locality}}">
-      </google-map-marker>
+    <paper-material>
+      <p><span>{{nextRaceLocation.locality}}</span>, <span>{{nextRaceLocation.country}}</span></p>
+      <google-map latitude="{{nextRaceLocation.lat}}" longitude="{{nextRaceLocation.long}}" zoom="13">
 
-    </google-map>
+        <google-map-marker latitude="37.779" longitude="-122.3892" draggable="false" 
+                           title="{{nextRaceLocation.locality}}">
+        </google-map-marker>
 
-    <template is="dom-repeat" items="{{raceList}}">
-      <paper-material>
-        <span>{{item.raceName}}</span>
-      </paper-material>
-    </template>
+      </google-map>
+    </paper-material>
 
   </template>
   <script>
@@ -79,6 +83,12 @@
         },
         nextRaceLocation: {
           computed: 'getNextRaceLocation(nextRace)'
+        },
+        nextRaceDate: {
+          computed: 'getNextRaceDate(nextRace)'
+        },
+        nextRaceTime: {
+          computed: 'getNextRaceTime(nextRace)'
         }
       },
       processRaceData: function(data) {
@@ -95,8 +105,19 @@
           }
         }
       },
-      getNextRaceLocation: function(race){
+      getNextRaceLocation: function(race) {
         return race.Circuit.Location;
+      },
+      getNextRaceDate: function(nextRace) {
+        var date = new Date(nextRace.date);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var formatted = addOrd(date.getDate()) + ' ' + 
+                        months[date.getMonth()] + ' ' + 
+                        date.getFullYear();
+        return formatted;
+      },
+      getNextRaceTime: function (nextRace) {
+        return nextRace.time.substring(0, nextRace.time.length - 4) + " GMT";
       }
     });
   })();
