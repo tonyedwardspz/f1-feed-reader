@@ -54,7 +54,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _tapHandler: function(e) {
-        console.log("Tap clicked");
         var target = Polymer.dom(e).localTarget;
         if (target && target.hasAttribute('collapsible-toggle')) {
           this.opened = !this.opened;

@@ -123,9 +123,14 @@
 
   </template>
   <script>
+  // jshint elision: true
   (function() {
     'use strict';
-
+    function addOrd(n) {
+      var ords = [,'st','nd','rd'];
+      var m = n%100;
+      return n + ((m > 10 && m < 14)? 'th' : ords[m%10] || 'th');
+    }
     new Polymer({
       is: 'race-calendar',
       properties: {
@@ -151,7 +156,7 @@
         return formatted;
       },
       getRaceTime: function (race) {
-        return race.time.substring(0, race.time.length - 4) + " GMT";
+        return race.time.substring(0, race.time.length - 4) + ' GMT';
       }
     });
   })();

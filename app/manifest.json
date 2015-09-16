@@ -1,6 +1,6 @@
 {
-  "name": "Polymer Starter Kit",
-  "short_name": "Polymer Starter Kit",
+  "name": "F1 Feed Reader",
+  "short_name": "F1 Feed",
   "icons": [{
         "src": "images/touch/icon-128x128.png",
         "sizes": "128x128",

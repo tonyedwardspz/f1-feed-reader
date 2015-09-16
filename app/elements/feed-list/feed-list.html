@@ -79,6 +79,12 @@
 </dom-module>
 
 <script>
+  // jshint elision: true
+  function addOrd(n) {
+    var ords = [,'st','nd','rd'];
+    var m = n%100;
+    return n + ((m > 10 && m < 14)? 'th' : ords[m%10] || 'th');
+  }
   Polymer({
     is: 'feed-list',
     properties: {
@@ -96,7 +102,7 @@
     formatDate: function(d){
       var date = new Date(d);
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      var formatted = date.getHours() + ':' + ("0" + 
+      var formatted = date.getHours() + ':' + ('0' + 
                       date.getMinutes()).slice(-2) + ' - ' + 
                       addOrd(date.getDate()) + ' ' + 
                       months[date.getMonth()] + ' ' + 
@@ -104,9 +110,4 @@
       return formatted;
     }
   });
-  function addOrd(n) {
-    var ords = [,'st','nd','rd'];
-    var ord, m = n%100;
-    return n + ((m > 10 && m < 14)? 'th' : ords[m%10] || 'th');
-  };
 </script>
