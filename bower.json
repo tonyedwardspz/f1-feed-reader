@@ -12,7 +12,8 @@
     "paper-elements": "PolymerElements/paper-elements#1.0.1",
     "paper-fab": "PolymerElements/paper-fab#~1.0.4",
     "paper-styles": "PolymerElements/paper-styles#^1.0.0",
-    "platinum-elements": "PolymerElements/platinum-elements#1.0.1"
+    "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
+    "paper-character": "tonyedwardspz/paper-character#^v1.0.5"
   },
   "devDependencies": {
     "web-component-tester": "*",
