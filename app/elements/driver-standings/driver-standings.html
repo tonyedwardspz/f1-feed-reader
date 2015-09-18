@@ -2,6 +2,8 @@
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-character/paper-character.html"> 
+<link rel="import" href="../grid-list.html">
 <link rel="import" href="../elements.html">
 
 <dom-module id="driver-standings">
@@ -14,30 +16,61 @@
         border-radius: 2px;
         height: 100%;
         padding: 16px 0 16px 0;
-        width: calc(98.66% - 16px);
+        /*width: calc(44% - 16px);*/
         margin: 16px auto;
         background: white;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 930px) {
 
         paper-material {
           --menu-container-display: none;
           width: calc(97.33% - 32px);
           padding-left: 16px;
           padding-right: 16px;
-        }
-      }
-
-      @media (min-width: 601px) {
-
-        paper-material {
-          width: calc(98% - 46px);
           margin-bottom: 16px;
           padding-left: 30px;
           padding-right: 30px;
         }
       }
+
+      @media (min-width: 931px) {
+
+        paper-material {
+          width: calc(49%);
+          margin-bottom: 16px;
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+
+        paper-material:nth-of-type(odd){
+          margin-left: 0;
+        }
+
+        paper-material:nth-of-type(even){
+          margin-right: 0;
+        }
+      }
+
+      .name {
+        margin-bottom: 16px;
+        font-size: 20px;
+        font-weight: 600;
+        font-style: italic;
+        color: #4FB6F7;
+        text-align: center;
+      }
+
+      .details {
+        display: inline-block;
+        text-align: center;
+        width: calc(100% - 60px);
+      }
+
+      .points{
+        font-size: 18px;
+      }
+
     </style>
 
     <iron-ajax
@@ -45,14 +78,22 @@
     url="http://ergast.com/api/f1/current/driverStandings.json"
     handle-as="json" 
     last-response="{{data}}"></iron-ajax>
+    <grid-list>
+      <template is="dom-repeat" items="{{driverList}}">
 
-    <template is="dom-repeat" items="{{driverList}}">
-      <paper-material>
-        <span>{{item.position}}</span>
-        <span>{{item.Driver.givenName}}</span> <span>{{item.Driver.familyName}}</span>
-        <span>{{item.points}}</span>
-      </paper-material>
-    </template>
+        <paper-material>
+          <paper-character char="[[item.position]]"></paper-character>
+          <div class="details">
+            <div class="name">
+              <span>{{item.Driver.givenName}}</span> <span>{{item.Driver.familyName}}</span>
+            </div>
+            <span class="points">{{item.points}}</span><span class="points"> pts</span>
+          </div>
+        </paper-material>
+
+      </template>
+    <grid-list>
+
   </template>
 
 
