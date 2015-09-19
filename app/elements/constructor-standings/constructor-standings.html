@@ -76,15 +76,15 @@
     handle-as="json" 
     last-response="{{data}}"></iron-ajax>
     <grid-list>
-      <template is="dom-repeat" items="{{constructorList}}">
+      <template is="dom-repeat" items="[[constructorList]]">
         <paper-material>
 
           <paper-character char="[[item.position]]"></paper-character>
           <div class="details">
             <div class="name">
-              <span>{{item.Constructor.name}}</span>
+              <span>[[item.Constructor.name]]</span>
             </div>
-            <span class="points">{{item.points}}</span><span class="points"> pts</span>
+            <span class="points">[[item.points]]</span><span class="points"> pts</span>
           </div>
 
         </paper-material>

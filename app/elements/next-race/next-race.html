@@ -49,18 +49,18 @@
     last-response="{{data}}"></iron-ajax>
 
     <paper-material>
-      <p>{{nextRace.raceName}}</p>
-      <p>{{nextRace.Circuit.circuitName}}</p>
-      <p>Date: <span>{{nextRaceDate}}</span></p>
-      <p>Time: <span>{{nextRaceTime}}</span></p>
+      <p>[[nextRace.raceName]]</p>
+      <p>[[nextRace.Circuit.circuitName]]</p>
+      <p>Date: <span>[[nextRaceDate]]</span></p>
+      <p>Time: <span>[[nextRaceTime]]</span></p>
     </paper-material>
 
     <paper-material>
-      <p><span>{{nextRaceLocation.locality}}</span>, <span>{{nextRaceLocation.country}}</span></p>
-      <google-map latitude="{{nextRaceLocation.lat}}" longitude="{{nextRaceLocation.long}}" zoom="13">
+      <p><span>[[nextRaceLocation.locality]]</span>, <span>[[nextRaceLocation.country]]</span></p>
+      <google-map latitude="[[nextRaceLocation.lat]]" longitude="[[nextRaceLocation.long]]" zoom="13">
 
         <google-map-marker latitude="37.779" longitude="-122.3892" draggable="false" 
-                           title="{{nextRaceLocation.locality}}">
+                           title="[[nextRaceLocation.locality]]">
         </google-map-marker>
 
       </google-map>

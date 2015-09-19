@@ -105,15 +105,15 @@
         <collapsible-card class="card" cascaded opened="[[!narrowLayout]]" narrow$="{{narrowLayout}}">
 
           <div class="content">
-            <div class="name">{{item.raceName}}</div>
-            <div class="locality">{{item.Circuit.Location.locality}}</div>
+            <div class="name">[[item.raceName]]</div>
+            <div class="locality">[[item.Circuit.Location.locality]]</div>
             <iron-icon class="toggle-icon" icon="arrow-drop-down" collapsible-toggle>
             <iron-icon>
           </div>
 
           <div collapsible-content>
-            <div class="time">{{getRaceDate(item)}}</div>
-            <div class="time">{{getRaceTime(item)}}</div>
+            <div class="time">[[getRaceDate(item)]]</div>
+            <div class="time">[[getRaceTime(item)]]</div>
           </div>
 
         </collapsible-card>

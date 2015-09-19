@@ -62,12 +62,12 @@
     <template is="dom-repeat" items="{{dataList}}">
       
       <paper-material elevation="1" class="paper-font-body2">
-        <h1>{{item.title}}</h1>
+        <h1>[[item.title]]</h1>
         <div class="content">
-          <p>{{item.description}}</p>
-          <p>Source: <a href="{{item.link}}"><span>{{item.source}}</span></a><br /> Date: <span>{{formatDate(item.pubDate)}}</span></p>
+          <p>[[item.description]]</p>
+          <p>Source: <a href="[[item.link]]"><span>[[item.source]]</span></a><br /> Date: <span>[[formatDate(item.pubDate)]]</span></p>
         </div>
-        <a href="{{item.link}}">
+        <a href="[[item.link]]">
           <paper-fab icon="arrow-forward"></paper-fab>
         </a>
       </paper-material>
