@@ -40,13 +40,17 @@
 
     .content {
       display: inline-block;
-      max-width: 80%;
+      width: 57%;
+    }
+
+    .actions {
+      display: inline-block;
+      width: 40%;
     }
 
     paper-fab {
       float: right;
-      margin-top:24px;
-      margin-left: auto;
+      margin-left: 20px;
       margin-right: auto;
     }
   </style>
@@ -63,13 +67,19 @@
       
       <paper-material elevation="1" class="paper-font-body2">
         <h1>[[item.title]]</h1>
+        <p>[[item.description]]</p>
+
         <div class="content">
-          <p>[[item.description]]</p>
           <p>Source: <a href="[[item.link]]"><span>[[item.source]]</span></a><br /> Date: <span>[[formatDate(item.pubDate)]]</span></p>
         </div>
-        <a href="[[item.link]]">
-          <paper-fab icon="arrow-forward"></paper-fab>
-        </a>
+
+        <div class="actions">
+          <a href="[[item.link]]">
+            <paper-fab icon="arrow-forward" label="Visit site" mini></paper-fab>
+          </a>
+          <paper-fab icon="star" mini label="favourite"></paper-fab>
+        </div>
+        
       </paper-material>
       
     </template>
