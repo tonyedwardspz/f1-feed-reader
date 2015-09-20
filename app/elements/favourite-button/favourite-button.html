@@ -36,8 +36,15 @@
         }
       }, 
       favouriteItem: function (){
-        this.fire('favourite', {story: this.story});
-        this.querySelector('paper-fab').className += " yellow";
+        if (this.favourite){
+          this.favourite = false;
+          this.querySelector('paper-fab').classList.remove("yellow");
+          this.fire('removeFavourite', {story: this.story});
+        } else {
+          this.favourite = true;
+          this.fire('addFavourite', {story: this.story});
+          this.querySelector('paper-fab').className += " yellow";
+        }
       },
       _favouriteChanged: function(e){
         if (this.favourite === true){
