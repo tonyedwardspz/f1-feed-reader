@@ -2,17 +2,21 @@
 <link rel="import" href="../elements.html">
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 
-<dom-module id="favourite-button" attributes="story">
+<dom-module id="favourite-button" attributes="story favourite">
 
   <style>
     paper-fab {
       float: right;
       margin-right: auto;
     }
+
+    .yellow::shadow iron-icon svg {
+      fill: #ffeb3b;
+    }
   </style>
 
-  <template>
-    <paper-fab icon="star" mini label="favourite" on-tap="favouriteItem" ></paper-fab>
+  <template is="dom-bind" observe="favourite">
+    <paper-fab icon="star" mini label="favourite" on-tap="favouriteItem"></paper-fab>
   </template>
   <script>
   (function() {
@@ -24,13 +28,27 @@
       properties: {
         story: {
           type: String
+        },
+        favourite: {
+          type: Boolean,
+          value: false,
+          observer: '_favouriteChanged'
         }
       }, 
       favouriteItem: function (){
         this.fire('favourite', {story: this.story});
+        this.querySelector('paper-fab').className += " yellow";
       },
       ready: function (){
-        
+        console.log(this.favourite)
+        if (this.favourite){
+          this.querySelector('paper-fab').className += " yellow";
+        }
+      },
+      _favouriteChanged: function(e){
+        if (this.favourite === true){
+          this.querySelector('paper-fab').className += " yellow";
+        }
       }
     });
   })();

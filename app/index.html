@@ -108,7 +108,7 @@
 
           <!-- Login button -->
           <div class="top top-container right horizontal layout">
-            <firebase-login fancy data="{{data}}" show_model="{{show_model}}" user="{{user}}"></firebase-login>
+            <firebase-login fancy favourites="{{favourites}}" show_model="{{show_model}}" user="{{user}}"></firebase-login>
           </div>
 
         </paper-toolbar>
@@ -118,7 +118,7 @@
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="home">
-              <feed-list></feed-list>
+              <feed-list favourites="{{favourites}}"></feed-list>
             </section>
 
             <section data-route="driver-standings">

@@ -8,6 +8,7 @@
     "iron-ajax": "PolymerElements/iron-ajax#~1.0.4",
     "iron-collapse": "PolymerElements/iron-collapse#^1.0.0",
     "iron-elements": "PolymerElements/iron-elements#1.0.0",
+    "iron-localstorage": "PolymerElements/iron-localstorage#~1.0.4",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "page": "visionmedia/page.js#~1.6.3",
     "paper-character": "tonyedwardspz/paper-character#^v1.0.5",
