@@ -15,7 +15,7 @@
     }
   </style>
 
-  <template is="dom-bind" observe="favourite">
+  <template is="dom-bind">
     <paper-fab icon="star" mini label="favourite" on-tap="favouriteItem"></paper-fab>
   </template>
   <script>
@@ -38,12 +38,6 @@
       favouriteItem: function (){
         this.fire('favourite', {story: this.story});
         this.querySelector('paper-fab').className += " yellow";
-      },
-      ready: function (){
-        console.log(this.favourite)
-        if (this.favourite){
-          this.querySelector('paper-fab').className += " yellow";
-        }
       },
       _favouriteChanged: function(e){
         if (this.favourite === true){

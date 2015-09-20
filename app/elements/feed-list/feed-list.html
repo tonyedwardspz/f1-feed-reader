@@ -126,31 +126,19 @@
     },
     favouriteItem: function(e){
       var itm = this.findItem(this.data.items, 'link', e.target.story);
-      console.log(itm.link);
       this.addFavourite(e, itm.link);
     },
     isFavourite: function(url){
-      // console.log(url)
-      // console.log(this.favourites)
       var fav = this.findItem(this.favourites, 'story', url);
-      console.log("fav: " + fav.story);
-
       if (fav != -1){
-        console.log("isFavourite returned true");
         return true
       } else {
-        console.log("isFavourite returned false");
         return false
       }
     },
     findItem: function (array, attr, value){
-      console.log("Find item");
-      console.log(array[0]['story']);
-      console.log(value);
-      console.log("End find item logs");
       for(var i = 0; i < array.length; i += 1) {
         if(array[i][attr] === value) {
-          console.log("found item");
           return array[i];
         }
       } return -1;
