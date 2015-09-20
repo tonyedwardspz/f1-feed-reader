@@ -3,17 +3,18 @@
   "private": true,
   "dependencies": {
     "byutv-jsonp": "~1.2.0",
+    "firebase-element": "GoogleWebComponents/firebase-element#~1.0.6",
     "google-map": "GoogleWebComponents/google-map#~1.1.0",
     "iron-ajax": "PolymerElements/iron-ajax#~1.0.4",
     "iron-collapse": "PolymerElements/iron-collapse#^1.0.0",
     "iron-elements": "PolymerElements/iron-elements#1.0.0",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "page": "visionmedia/page.js#~1.6.3",
+    "paper-character": "tonyedwardspz/paper-character#^v1.0.5",
     "paper-elements": "PolymerElements/paper-elements#1.0.1",
     "paper-fab": "PolymerElements/paper-fab#~1.0.4",
     "paper-styles": "PolymerElements/paper-styles#^1.0.0",
-    "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
-    "paper-character": "tonyedwardspz/paper-character#^v1.0.5"
+    "platinum-elements": "PolymerElements/platinum-elements#1.0.1"
   },
   "devDependencies": {
     "web-component-tester": "*",
