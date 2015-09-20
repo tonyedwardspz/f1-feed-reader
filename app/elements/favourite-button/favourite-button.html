@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../elements.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+
+<dom-module id="favourite-button" attributes="story">
+
+  <style>
+    paper-fab {
+      float: right;
+      margin-right: auto;
+    }
+  </style>
+
+  <template>
+    <paper-fab icon="star" mini label="favourite" on-tap="favouriteItem" ></paper-fab>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'favourite-button',
+
+      properties: {
+        story: {
+          type: String
+        }
+      }, 
+      favouriteItem: function (){
+        this.fire('favourite', {story: this.story});
+      },
+      ready: function (){
+        
+      }
+    });
+  })();
+  </script>
+</dom-module>
