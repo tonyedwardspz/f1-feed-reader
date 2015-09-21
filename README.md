@@ -2,8 +2,6 @@
 
 > A Forumla 1 news reader and information app
 
-You can view the latest deployed version (here)[http://purelywebdesign.co.uk/sandbox/f1feedreader/]
-
 This is the web app version of an Android app I created as part of a University project. It's main purpose is to act as a hello world for Polymer 1.x.x. Feel free to clone, copy and steal code. Pull requests welcome.
 
 The starting point is the default Yeaoman starter kit application.
