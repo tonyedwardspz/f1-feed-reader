@@ -13,6 +13,6 @@ The starting point is the default Yeaoman starter kit application.
 To play around with the project localy you need to:
 
 1. Get a copy of the code.
-2. Install the dependencies if you don't already have them.
+2. Install the dependencies if you don't already have them. (npm install && bower install)
 3. Run `gulp serve` from the project root via the command line.
 4. Make :coffee:
